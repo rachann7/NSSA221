@@ -1,4 +1,5 @@
 import urllib.request
+import os
 
 # testing internet connection to google 
 def internet_connection(host='http://google.com'):
@@ -20,9 +21,28 @@ def validate_ip(ip_address):
             return 'Invalid IP address'  
    
     return 'Valid IP address'  
-   
 
 # tests
 print( "Connected" if internet_connection() else "No internet!" )
 print(validate_ip("129.21.3.17"))
-print(validate_ip("255.255.255.0"))
+print(validate_ip("192.168.1.1"))
+
+# pinging remote ip address, testing connectivity
+remote_ip_address = "129.21.3.17" #example
+response = os.system("ping -c 4 " + remote_ip_address)
+
+#and then check the response...
+if response == 0:
+  print(remote_ip_address, 'is up!')
+else:
+  print(remote_ip_address, 'is down!')
+
+#pinging gateway, testing connectivity
+gateway = "192.168.1.1" #example
+response = os.system("ping -c 4 " + gateway)
+
+#and then check the response...
+if response == 0:
+  print(gateway, 'is up!')
+else:
+  print(gateway, 'is down!')
